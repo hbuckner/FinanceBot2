@@ -10,7 +10,7 @@ from rtstock.stock import Stock
 #c=readCurrency().currencyGet("NASDAQ.txt")
 
 def simpleMovingAverage(stockname):
-	N = 201
+	N = 200
 	start = datetime.now() - timedelta(days=N)
 	yesterday = datetime.today()-timedelta(days=1)
 	end = yesterday

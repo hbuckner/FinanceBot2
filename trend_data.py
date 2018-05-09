@@ -3,6 +3,7 @@ import sys
 import pytrends
 import eventlet
 from pytrends.request import TrendReq
+import time as t
 
 def get_trend_data(input):
     pytrends = TrendReq(hl='en-US', tz=360)
@@ -14,16 +15,16 @@ def get_trend_data(input):
 #get trend data
 #testing
 #print(get_trend_data("buy GOOG"))
-
-def read_data_getTrend():
+#read_data_getTrend: gets trend data and outputs to file
+def read_data_getTrend(seconds):
     file = open("nasdaq.txt", "r")
     file2 = open("finish.txt", "w")
-
     for line in file:
-        with eventlet.Timeout(45):
-            c=get_trend_data(line)
-            b=str(c)
-            print(c)
-            file2.write(b)
+                c=get_trend_data("buy "+line)
 
-read_data_getTrend()
+                b=str(c)
+                print(b)
+                file2.write(b)
+                t.sleep(seconds)
+    print("finished!")
+read_data_getTrend(10)
